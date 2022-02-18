@@ -2,20 +2,26 @@
 #include <stdlib.h>
 #include "t_timetable.h"
 
-void print(Timetable *timetable){
-    for(int i = 0; i < timetable->size; i++){
-        printf("| %s | %3s |\n", timetable->time[i].hour, timetable->time[i].minute, timetable->time[i].second, timetable->name[i]);
-    }
+void print_row(Row *row){
+    printf("| %d:%d:%d | %30s |\n", row->time->hour, row->time->minute, row->time->second, row->name);
 }
 
-Timetable* malloc_timetable(){
-    Timetable *timetable = (Timetable*) malloc(sizeof(Timetable));
-    timetable->time = (Time*) malloc(sizeof(Time));
-    timetable->name = (char*) malloc(sizeof(char));
-    return timetable;
+Row* malloc_row(){
+    Row *row = (Row*) malloc(sizeof(Row));
+    row->time = NULL;
+    row->name = NULL;
+    return row;
 }
 
-// Para testes
-void main(){
-
+Row * create_row(Time *time, char *name){
+    Row *row = malloc_row();
+    row->time = time;
+    row->name = name;
+    return row;
 }
+
+// // Para testes 
+// void main() {
+//     Row *row = create_row(create_time(12, 13, 14), "Teste");
+//     print_row(row);
+// }

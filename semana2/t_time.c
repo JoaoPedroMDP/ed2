@@ -40,29 +40,29 @@ int time_to_seconds(Time *time){
 }
 
 // Para testes
-int main(){
-    Time *time = create_time(12, 13, 14);
-    char stringyfied[TIME_LEN] = {};
-    time_to_string(time, stringyfied);
-    printf("%s\n", stringyfied);
+// int main(){
+//     Time *time = create_time(12, 13, 14);
+//     char stringyfied[TIME_LEN] = {};
+//     time_to_string(time, stringyfied);
+//     printf("%s\n", stringyfied);
 
-    printf("%d\n", time_to_seconds(time));
+//     printf("%d\n", time_to_seconds(time));
 
-    Time *greater_by_seconds = create_time(12, 13, 13);
-    Time *greater_by_minutes = create_time(12, 12, 14);
-    Time *greater_by_hours = create_time(11, 13, 14);
-    Time *equal = create_time(12, 13, 14);
+//     Time *greater_by_seconds = create_time(12, 13, 13);
+//     Time *greater_by_minutes = create_time(12, 12, 14);
+//     Time *greater_by_hours = create_time(11, 13, 14);
+//     Time *equal = create_time(12, 13, 14);
 
-    printf("Maior por segundos: %d\n", time_cmp(time, greater_by_seconds));
-    printf("Maior por minutos:%d\n", time_cmp(time, greater_by_minutes));
-    printf("Maior por horas: %d\n", time_cmp(time, greater_by_hours));
-    printf("Igual: %d\n", time_cmp(time, equal));
+//     printf("Maior por segundos: %d\n", time_cmp(time, greater_by_seconds));
+//     printf("Maior por minutos:%d\n", time_cmp(time, greater_by_minutes));
+//     printf("Maior por horas: %d\n", time_cmp(time, greater_by_hours));
+//     printf("Igual: %d\n", time_cmp(time, equal));
 
-    Time *less_by_seconds = create_time(12, 13, 15);
-    Time *less_by_minutes = create_time(12, 14, 14);
-    Time *less_by_hours = create_time(13, 13, 14);
+//     Time *less_by_seconds = create_time(12, 13, 15);
+//     Time *less_by_minutes = create_time(12, 14, 14);
+//     Time *less_by_hours = create_time(13, 13, 14);
 
-    printf("Menor por segundos: %d\n", time_cmp(time, less_by_seconds));
-    printf("Menor por minutos:%d\n", time_cmp(time, less_by_minutes));
-    printf("Menor por horas: %d\n", time_cmp(time, less_by_hours));
-}
+//     printf("Menor por segundos: %d\n", time_cmp(time, less_by_seconds));
+//     printf("Menor por minutos:%d\n", time_cmp(time, less_by_minutes));
+//     printf("Menor por horas: %d\n", time_cmp(time, less_by_hours));
+// }
