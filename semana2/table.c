@@ -40,6 +40,18 @@ void put(Table *table, Row *row)
     table->size++;
 }
 
+// Retorna o primeiro elemento com a chave passada
+char *get(Table *table, Time *time)
+{
+    for( int i = 0; i < table->size; i++){
+        if(time_cmp(table->rows[i].time, time) == 0){
+            return table->rows[i].name;
+        }
+    }
+    printf("Não encontrado\n");
+    return NULL;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -53,5 +65,8 @@ void main()
         put(table, row1);
         put(table, row2);
     }
-    print_table(table);
+    // print_table(table);
+
+    char *wanted = get(table, time1);
+    printf("%s\n", wanted);
 }

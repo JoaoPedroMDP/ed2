@@ -14,20 +14,20 @@ Table *create_table();
 void realloc_table(Table *table);
 
 void put(Table *table, Row *row);
-char* get(Row *row, Time *time);
-void delete(Row *row, Time *time);
-int contains(Row *row, Time *time);
-int is_empty(Row *row);
-int size(Row *row);
-Time* min(Row *row);
-Time* max(Row *row);
-Time* floor(Row *row, Time *time);
-Time* ceiling(Row *row, Time *time);
-int rank(Row *row, Time *time); // Posição na tabela (a partir da menor)
-//Time* select(Row *row, int k); // k-ésimo elemento (a partir da menor)
-void delete_min(Row *row);
-void delete_max(Row *row);
-int size_range(Row *row, Time *lo, Time *hi);
-void keys(Row *row, Time *lo, Time *hi);
+char* get(Table *table, Time *time);
+void delete(Table *table, Time *time);
+int contains(Table *table, Time *time);
+int is_empty(Table *table);
+int size(Table *table);
+Time* min(Table *table);
+Time* max(Table *table);
+Time* floor(Table *table, Time *time);
+Time* ceiling(Table *table, Time *time);
+int rank(Table *table, Time *time); // Posição na tabela (a partir da menor)
+//Time* select(Table *table, int k); // k-ésimo elemento (a partir da menor)
+void delete_min(Table *table);
+void delete_max(Table *table);
+int size_range(Table *table, Time *lo, Time *hi);
+void keys(Table *table, Time *lo, Time *hi);
 
 #endif
