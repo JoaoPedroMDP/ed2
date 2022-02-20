@@ -103,6 +103,12 @@ int is_empty(Table *table)
     return table->size == 0;
 }
 
+
+int size(Table *table)
+{
+    return table->size;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -145,4 +151,11 @@ void main()
     // printf("%d\n", is_empty(table));
     // put(table,  row1);
     // printf("%d\n", is_empty(table));
+
+    // SIZE
+    printf("%d\n", size(table));
+    put(table,  row1);
+    put(table,  row2);
+    printf("%d\n", size(table));
+
 }
