@@ -12,10 +12,11 @@ struct Table{
 void print_table(Table *table);
 Table *create_table();
 void realloc_table(Table *table);
+void shift_left(Table *table, int starting_point);
 
 void put(Table *table, Row *row);
-char* get(Table *table, Time *time);
-void delete(Table *table, Time *time);
+char* get(Table *table, Time *time); //DONE
+void delete(Table *table, Time *time); //DONE
 int contains(Table *table, Time *time);
 int is_empty(Table *table);
 int size(Table *table);

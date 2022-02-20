@@ -4,7 +4,7 @@
 
 typedef struct t_timetable Row;
 // Prof aqui eu mantive o nome original da estrutura que o senhor pediu
-// Porém ele estava me confundido, então o senhor vai ver que logo acima eu renomei
+// Porém ele estava me confundido, então o senhor vai ver que logo acima eu renomeei
 // para Row
 struct t_timetable {
     Time *time;

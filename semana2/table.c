@@ -52,6 +52,29 @@ char *get(Table *table, Time *time)
     return NULL;
 }
 
+void shift_left(Table *table, int starting_point)
+{
+    int i = 0;
+    for (i = starting_point; i < table->size - 1; i++)
+    {
+        table->rows[i] = table->rows[i + 1];
+    }
+
+    table->size--;
+}
+
+void delete(Table *table, Time *time)
+{
+    for( int i = 0; i < table->size; i++){
+        if(time_cmp(table->rows[i].time, time) == 0){
+            shift_left(table, i);
+            return;
+        }
+    }
+
+    printf("Não encontrado\n");
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -60,13 +83,18 @@ void main()
     Row *row2 = create_row(time2, "Oi");
     Table *table = create_table();
 
-    for(int i = 0; i < 30; i++)
-    {
+    // for(int i = 0; i < 30; i++)
+    // {
         put(table, row1);
         put(table, row2);
-    }
+    // }
     // print_table(table);
 
-    char *wanted = get(table, time1);
-    printf("%s\n", wanted);
+    // char *wanted = get(table, time1);
+    // printf("%s\n", wanted);
+
+    print_table(table);
+    printf("\n");
+    delete(table, time1);
+    print_table(table);
 }
