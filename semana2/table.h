@@ -23,7 +23,7 @@ int size(Table *table); // DONE
 Time* min(Table *table); // DONE
 Time* max(Table *table); // DONE
 Time* floor(Table *table, Time *time); // DONE
-Time* ceiling(Table *table, Time *time);
+Time* ceiling(Table *table, Time *time); // DONE
 int rank(Table *table, Time *time); // Posição na tabela (a partir da menor)
 //Time* select(Table *table, int k); // k-ésimo elemento (a partir da menor)
 void delete_min(Table *table);

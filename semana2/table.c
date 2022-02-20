@@ -162,6 +162,20 @@ Time *ceiling(Table *table, Time *time)
     return floor;
 }
 
+int rank(Table *table, Time *time)
+{
+    int i = 0;
+    int rank = 0;
+    for( i = 0; i < table->size; i++)
+    {
+        if(lesser(table->rows[i].time, time)){
+            rank++;
+        }
+    }
+
+    return rank;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -252,4 +266,11 @@ void main()
     // put(table,  row2);
     // Time *time5 = create_time(15,16,20);
     // print_time(ceiling(table, time5));
+
+    // RANK
+    // put(table,  row3);
+    // put(table,  row1);
+    // put(table,  row2);
+    // printf("%d\n", rank(table, time1));
+    // printf("%d\n", rank(table, time3));
 }
