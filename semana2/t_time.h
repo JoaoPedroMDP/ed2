@@ -13,6 +13,7 @@ void print_time(Time *time);
 int greater(Time *time1, Time *time2);
 int lesser(Time *time1, Time *time2);
 int equal(Time *time1, Time *time2);
+void cpy_time(Time *from, Time *to);
 
 Time* malloc_time();
 Time* create_time(int hour, int minutes, int seconds);

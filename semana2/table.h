@@ -31,6 +31,6 @@ Time* select_by_rank(Table *table, int k); // DONE Professor precisei renomear p
 void delete_min(Table *table); // DONE
 void delete_max(Table *table); // DONE
 int size_range(Table *table, Time *lo, Time *hi); // DONE
-void keys(Table *table, Time *lo, Time *hi);
+Time *keys(Table *table, Time *lo, Time *hi, Time *keys);
 
 #endif

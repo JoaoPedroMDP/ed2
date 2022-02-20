@@ -221,6 +221,20 @@ int size_range(Table *table, Time *min, Time *max)
     return rank(table, max) - rank(table, min) + 1;
 }
 
+Time *keys(Table *table, Time *min, Time *max, Time *keys)
+{
+    int min_rank = rank(table, min), max_rank = rank(table, max);
+    int key_amount = max_rank - min_rank + 1;
+    keys = (Time *) malloc(key_amount * sizeof(Time));
+
+    for(int i = min_rank; i <= max_rank; i++){
+        cpy_time(table->rows[i].time, &(keys[i - min_rank]));
+    }
+
+    return keys;
+}
+
+//  Para testes
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -344,4 +358,18 @@ void main()
     // put(table,  row2);
     // put(table,  row1);
     // printf("%d\n", size_range(table, time1, time3));
+
+    // KEYS
+    // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
+    // Time *result;
+    // result = keys(table, time1, time3, result);
+    // int i = 0;
+    // int range = size_range(table, time1, time3);
+
+    // for(i = 0; i < range; i++){
+    //     print_time(&(result[i]));
+    //     printf("\n");
+    // }
 }

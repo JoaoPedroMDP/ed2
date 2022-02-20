@@ -63,6 +63,13 @@ int time_to_seconds(Time *time){
     return 3600 * time->hour + 60 * time->minute + time->second;
 }
 
+void cpy_time(Time *from, Time *to)
+{
+    to->hour = from->hour;
+    to->minute = from->minute;
+    to->second = from->second;
+}
+
 // Para testes
 // int main(){
 //     Time *time = create_time(12, 13, 14);
