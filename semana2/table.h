@@ -18,9 +18,9 @@ void put(Table *table, Row *row);
 char* get(Table *table, Time *time); //DONE
 void delete(Table *table, Time *time); //DONE
 int contains(Table *table, Time *time); // DONE
-int is_empty(Table *table);
-int size(Table *table);
-Time* min(Table *table);
+int is_empty(Table *table); // DONE
+int size(Table *table); // DONE 
+Time* min(Table *table); // DONE
 Time* max(Table *table);
 Time* floor(Table *table, Time *time);
 Time* ceiling(Table *table, Time *time);

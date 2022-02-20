@@ -122,6 +122,18 @@ Time *min(Table *table)
     return min;
 }
 
+Time *max(Table *table)
+{
+    Time *max = create_time(INT_MIN, INT_MIN, INT_MIN);
+    for(int i = 0; i < table->size; i++){
+        if(time_cmp(table->rows[i].time, max) >= 0){
+            max = table->rows[i].time;
+        }
+    }
+
+    return max;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -181,4 +193,15 @@ void main()
     // Row *row4 = create_row(time4, "Teste");
     // put(table,  row4);
     // print_time(min(table));
+
+    // MAX
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
+    // print_time(max(table));
+    // printf("\n");
+    // Time *time4 = create_time(23,23,23);
+    // Row *row4 = create_row(time4, "Teste");
+    // put(table,  row4);
+    // print_time(max(table));
 }
