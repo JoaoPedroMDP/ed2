@@ -216,6 +216,11 @@ void delete_max(Table *table){
     delete(table, max(table));
 }
 
+int size_range(Table *table, Time *min, Time *max)
+{
+    return rank(table, max) - rank(table, min) + 1;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -333,4 +338,10 @@ void main()
     // put(table,  row1);
     // delete_max(table);
     // print_table(table);
+
+    // SIZE_RANGE
+    // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
+    // printf("%d\n", size_range(table, time1, time3));
 }
