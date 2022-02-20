@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <string.h>
 #include "table.h"
 
 // Mostra a tabela
@@ -16,7 +17,7 @@ void print_table(Table *table)
 Table *malloc_table(){
     Table *table = (Table*) malloc(sizeof(Table));
     table->size = 0;
-    table->max = 50;
+    table->max = 100;
     table->rows = (Row *) malloc(sizeof(Row) * table->max);
     return table;
 }
@@ -28,7 +29,7 @@ Table *create_table(){
 // Realoca espaço para a tabela
 void realloc_table(Table *table)
 {
-    int new_size = (int) table->size * 1.40;
+    int new_size = (int) table->size * 2;
     table->rows = (Row*) realloc(table->rows, new_size * sizeof(Row));
     table->max = new_size;
 }
@@ -235,15 +236,16 @@ Time *keys(Table *table, Time *min, Time *max, Time *keys)
 }
 
 //  Para testes
-void main()
+void tests()
 {
-    Time *time1 = create_time(12,13,14);
-    Row *row1 = create_row(time1, "Primeiro");
-    Time *time2 = create_time(15,16,17);
-    Row *row2 = create_row(time2, "Segundo");
-    Time *time3 = create_time(18,19,20);
-    Row *row3 = create_row(time3, "Terceiro");
-    Table *table = create_table();
+    // DESCOMENTAR PARA TESTAR
+    // Time *time1 = create_time(12,13,14);
+    // Row *row1 = create_row(time1, "Primeiro");
+    // Time *time2 = create_time(15,16,17);
+    // Row *row2 = create_row(time2, "Segundo");
+    // Time *time3 = create_time(18,19,20);
+    // Row *row3 = create_row(time3, "Terceiro");
+    // Table *table = create_table();
 
     // PUT / SHIFT_RIGHT / PRINT
     // put(table,  row3);
@@ -372,4 +374,22 @@ void main()
     //     print_time(&(result[i]));
     //     printf("\n");
     // }
+}
+
+int main()
+{
+    Table *table = create_table();
+    int hour, minute, second;
+    char *name = (char *) malloc(sizeof(char) * NAME_LEN);
+    memset( name, 0x00, NAME_LEN );
+    scanf("%d:%d:%d %s\n", &hour, &minute, &second, name);
+    while(hour >= 0){
+        Time *time = create_time(hour, minute, second);
+        Row *row = create_row(time, name);
+        put(table, row);
+        memset( name, 0x00, NAME_LEN );
+        scanf("%d:%d:%d %s\n", &hour, &minute, &second, name);
+    }
+
+    print_table(table);
 }
