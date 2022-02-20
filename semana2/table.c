@@ -212,6 +212,10 @@ void delete_min(Table *table){
     delete(table, min(table));
 }
 
+void delete_max(Table *table){
+    delete(table, max(table));
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -321,5 +325,12 @@ void main()
     // put(table,  row2);
     // put(table,  row1);
     // delete_min(table);
+    // print_table(table);
+
+    // DELETE_MAX
+    // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
+    // delete_max(table);
     // print_table(table);
 }
