@@ -33,16 +33,21 @@ void realloc_table(Table *table)
     table->max = new_size;
 }
 
-// Inserte uma linha na tabela.
+// Inserte uma linha na tabela ordenadamente.
 void put(Table *table, Row *row)
 {
+    int i = 0;
     if(table->size == table->max)
     {
         realloc_table(table);
     }
 
-    table->rows[table->size] = *row;
-    table->size++;
+    while(i < table->size && table->rows[i].time != NULL && greater(row->time, table->rows[i].time)){
+        i++;
+    }
+
+    shift_right(table, i);
+    table->rows[i] = *row;
 }
 
 // Retorna o valor da primeira posição com a chave passada
@@ -57,7 +62,7 @@ char *get(Table *table, Time *time)
     return NULL;
 }
 
-// Move o array par a esquerda começando em starting_point (este será removido)
+// Move o array para a esquerda começando em starting_point (este será removido)
 void shift_left(Table *table, int starting_point)
 {
     int i = 0;
@@ -67,6 +72,23 @@ void shift_left(Table *table, int starting_point)
     }
 
     table->size--;
+}
+
+// Move o array para a direita começando do fim até end_point
+void shift_right(Table *table, int end_point)
+{
+    if(table->size == table->max){
+        printf("Tabela cheia. Realocando...\n");
+        realloc_table(table);
+    }
+
+    int i = 0;
+    for (i = table->size; i >= end_point; i--)
+    {
+        table->rows[i] = table->rows[i - 1];
+    }
+
+    table->size++;
 }
 
 // Tanto delete como contains faziam quase a mesma coisa, então puxei pra cima o trabalho pesado
@@ -176,20 +198,30 @@ int rank(Table *table, Time *time)
     return rank;
 }
 
+Time *select_by_rank(Table *table, int rank)
+{
+    if(rank < table->size){
+        return table->rows[rank].time;
+    }else{
+        printf("Rank fora dos limites da tabela. Retornando o último elemento");
+        return table->rows[table->size - 1].time;
+    }
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
-    Row *row1 = create_row(time1, "Horaaaaaaaaaaaaaario");
+    Row *row1 = create_row(time1, "Primeiro");
     Time *time2 = create_time(15,16,17);
-    Row *row2 = create_row(time2, "Oi");
+    Row *row2 = create_row(time2, "Segundo");
     Time *time3 = create_time(18,19,20);
-    Row *row3 = create_row(time3, "Teste");
+    Row *row3 = create_row(time3, "Terceiro");
     Table *table = create_table();
 
-    // PUT / PRINT
-    // put(table,  row1);
-    // put(table,  row2);
+    // PUT / SHIFT_RIGHT / PRINT
     // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
     // print_table(table);
 
     // GET
@@ -273,4 +305,10 @@ void main()
     // put(table,  row2);
     // printf("%d\n", rank(table, time1));
     // printf("%d\n", rank(table, time3));
+
+    // SELECT_BY_RANK
+    // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
+    // print_time(select_by_rank(table, 0));
 }

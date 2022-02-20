@@ -13,6 +13,7 @@ void print_table(Table *table);
 Table *create_table();
 void realloc_table(Table *table);
 void shift_left(Table *table, int starting_point);
+void shift_right(Table *table, int end_point);
 
 void put(Table *table, Row *row);
 char* get(Table *table, Time *time); //DONE
@@ -24,8 +25,9 @@ Time* min(Table *table); // DONE
 Time* max(Table *table); // DONE
 Time* floor(Table *table, Time *time); // DONE
 Time* ceiling(Table *table, Time *time); // DONE
-int rank(Table *table, Time *time); // Posição na tabela (a partir da menor)
-//Time* select(Table *table, int k); // k-ésimo elemento (a partir da menor)
+int rank(Table *table, Time *time); // DONE
+Time* select_by_rank(Table *table, int k); // DONE Professor precisei renomear pois tava dando conflito com o nome de uma
+// função da stdlib, e por isso não conseguia compilar.
 void delete_min(Table *table);
 void delete_max(Table *table);
 int size_range(Table *table, Time *lo, Time *hi);
