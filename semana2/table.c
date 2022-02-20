@@ -136,20 +136,30 @@ Time *max(Table *table)
 
 Time *floor(Table *table, Time *time)
 {
-    int i = 0, cmp = 0;
+    int i = 0;
+    Time *floor = create_time(INT_MIN, INT_MIN, INT_MIN);
     for( i = 0; i < table->size; i++)
     {
-        cmp = time_cmp(table->rows[i].time, time); 
-        if(cmp >= 0){
-            if(cmp == 0){
-                return table->rows[i].time;
-            }else{
-                return table->rows[i - 1].time;
-            }
+        if((lesser(table->rows[i].time, time) || equal(table->rows[i].time, time)) && greater(table->rows[i].time, floor)){
+            floor = table->rows[i].time;
         }
     }
 
-    return table->rows[i - 1].time;
+    return floor;
+}
+
+Time *ceiling(Table *table, Time *time)
+{
+    int i = 0;
+    Time *floor = create_time(INT_MAX, INT_MAX, INT_MAX);
+    for( i = 0; i < table->size; i++)
+    {
+        if((greater(table->rows[i].time, time) || equal(table->rows[i].time, time)) && lesser(table->rows[i].time, floor)){
+            floor = table->rows[i].time;
+        }
+    }
+
+    return floor;
 }
 
 void main()
@@ -224,9 +234,22 @@ void main()
     // print_time(max(table));
 
     // FLOOR
+    // Time *time4 = create_time(15,16,19);
+    // Row *row4 = create_row(time4, "Teste");
+    // put(table,  row4);
+    // put(table,  row3);
     // put(table,  row1);
     // put(table,  row2);
+    // Time *time5 = create_time(15,16,20);
+    // print_time(floor(table, time5));
+
+    // CEILING
+    // Time *time4 = create_time(15,16,21);
+    // Row *row4 = create_row(time4, "Teste");
+    // put(table,  row4);
     // put(table,  row3);
-    // Time *time4 = create_time(15,16,20);
-    // print_time(floor(table, time4));
+    // put(table,  row1);
+    // put(table,  row2);
+    // Time *time5 = create_time(15,16,20);
+    // print_time(ceiling(table, time5));
 }

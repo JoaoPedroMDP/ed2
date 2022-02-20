@@ -38,6 +38,21 @@ int time_cmp(Time* time1, Time* time2){
     }
 }
 
+int greater(Time *time1, Time *time2)
+{
+    return time_cmp(time1, time2) > 0;
+}
+
+int lesser(Time *time1, Time *time2)
+{
+    return time_cmp(time1, time2) < 0;
+}
+
+int equal(Time *time1, Time *time2)
+{
+    return time_cmp(time1, time2) == 0;
+}
+
 void time_to_string(Time* time, char *dest){
     char buffer[TIME_LEN] = {};
     snprintf(buffer, TIME_LEN, "%02d:%02d:%02d", time->hour, time->minute, time->second);

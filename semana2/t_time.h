@@ -10,6 +10,9 @@ struct t_time {
     int second;
 };
 void print_time(Time *time);
+int greater(Time *time1, Time *time2);
+int lesser(Time *time1, Time *time2);
+int equal(Time *time1, Time *time2);
 
 Time* malloc_time();
 Time* create_time(int hour, int minutes, int seconds);
