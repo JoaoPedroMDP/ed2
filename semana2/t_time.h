@@ -9,6 +9,7 @@ struct t_time {
     int minute;
     int second;
 };
+void print_time(Time *time);
 
 Time* malloc_time();
 Time* create_time(int hour, int minutes, int seconds);

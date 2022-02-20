@@ -3,6 +3,12 @@
 #include <string.h>
 #include "t_time.h"
 
+void print_time(Time *time){
+    char str[TIME_LEN];
+    time_to_string(time, str);
+    printf("%s", str);
+}
+
 Time *malloc_time() {
     Time *time = (Time *) malloc(sizeof(Time));
     return time;
@@ -16,6 +22,9 @@ Time *create_time(int hour, int minutes, int seconds) {
     return time;
 }
 
+// Se time1 for maior, retorna 1.
+// Caso contrário, -1. 
+// Se igual, 0.
 int time_cmp(Time* time1, Time* time2){
     int time1_in_seconds = time_to_seconds(time1);
     int time2_in_seconds = time_to_seconds(time2);
@@ -31,7 +40,7 @@ int time_cmp(Time* time1, Time* time2){
 
 void time_to_string(Time* time, char *dest){
     char buffer[TIME_LEN] = {};
-    snprintf(buffer, TIME_LEN, "%d:%d:%d", time->hour, time->minute, time->second);
+    snprintf(buffer, TIME_LEN, "%02d:%02d:%02d", time->hour, time->minute, time->second);
     strncpy(dest, buffer, TIME_LEN);
 }
 

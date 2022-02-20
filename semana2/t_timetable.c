@@ -3,7 +3,9 @@
 #include "t_timetable.h"
 
 void print_row(Row *row){
-    printf("| %d:%d:%d | %30s |\n", row->time->hour, row->time->minute, row->time->second, row->name);
+    printf("| ");
+    print_time(row->time);
+    printf(" | %30s |\n", row->name);
 }
 
 Row* malloc_row(){

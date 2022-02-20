@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "table.h"
 
 // Mostra a tabela
@@ -109,6 +110,18 @@ int size(Table *table)
     return table->size;
 }
 
+Time *min(Table *table)
+{
+    Time *min = create_time(INT_MAX, INT_MAX, INT_MAX);
+    for(int i = 0; i < table->size; i++){
+        if(time_cmp(table->rows[i].time, min) <= 0){
+            min = table->rows[i].time;
+        }
+    }
+
+    return min;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -153,9 +166,19 @@ void main()
     // printf("%d\n", is_empty(table));
 
     // SIZE
-    printf("%d\n", size(table));
-    put(table,  row1);
-    put(table,  row2);
-    printf("%d\n", size(table));
+    // printf("%d\n", size(table));
+    // put(table,  row1);
+    // put(table,  row2);
+    // printf("%d\n", size(table));
 
+    // MIN
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
+    // print_time(min(table));
+    // printf("\n");
+    // Time *time4 = create_time(1,2,3);
+    // Row *row4 = create_row(time4, "Teste");
+    // put(table,  row4);
+    // print_time(min(table));
 }
