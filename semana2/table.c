@@ -97,6 +97,12 @@ int contains(Table *table, Time *time)
     return index >= 0;
 }
 
+// Verifica se a tabela está vazia
+int is_empty(Table *table)
+{
+    return table->size == 0;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -134,4 +140,9 @@ void main()
     // put(table,  row2);
     // printf("%d\n", contains(table, row1->time));
     // printf("%d\n", contains(table, row3->time));
+
+    // EMPTY
+    // printf("%d\n", is_empty(table));
+    // put(table,  row1);
+    // printf("%d\n", is_empty(table));
 }
