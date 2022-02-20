@@ -208,6 +208,10 @@ Time *select_by_rank(Table *table, int rank)
     }
 }
 
+void delete_min(Table *table){
+    delete(table, min(table));
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -311,4 +315,11 @@ void main()
     // put(table,  row2);
     // put(table,  row1);
     // print_time(select_by_rank(table, 0));
+
+    // DELETE_MIN
+    // put(table,  row3);
+    // put(table,  row2);
+    // put(table,  row1);
+    // delete_min(table);
+    // print_table(table);
 }
