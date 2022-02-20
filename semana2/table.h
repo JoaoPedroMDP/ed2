@@ -17,7 +17,7 @@ void shift_left(Table *table, int starting_point);
 void put(Table *table, Row *row);
 char* get(Table *table, Time *time); //DONE
 void delete(Table *table, Time *time); //DONE
-int contains(Table *table, Time *time);
+int contains(Table *table, Time *time); // DONE
 int is_empty(Table *table);
 int size(Table *table);
 Time* min(Table *table);

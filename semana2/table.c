@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "table.h"
 
+// Mostra a tabela
 void print_table(Table *table)
 {
     for( int i = 0; i < table->size; i++)
@@ -10,6 +11,7 @@ void print_table(Table *table)
     }
 }
 
+// Aloca espaço para a tabela (apenas na criação)
 Table *malloc_table(){
     Table *table = (Table*) malloc(sizeof(Table));
     table->size = 0;
@@ -22,6 +24,7 @@ Table *create_table(){
     return malloc_table();
 }
 
+// Realoca espaço para a tabela
 void realloc_table(Table *table)
 {
     int new_size = (int) table->size * 1.40;
@@ -29,6 +32,7 @@ void realloc_table(Table *table)
     table->max = new_size;
 }
 
+// Inserte uma linha na tabela.
 void put(Table *table, Row *row)
 {
     if(table->size == table->max)
@@ -40,7 +44,7 @@ void put(Table *table, Row *row)
     table->size++;
 }
 
-// Retorna o primeiro elemento com a chave passada
+// Retorna o valor da primeira posição com a chave passada
 char *get(Table *table, Time *time)
 {
     for( int i = 0; i < table->size; i++){
@@ -52,6 +56,7 @@ char *get(Table *table, Time *time)
     return NULL;
 }
 
+// Move o array par a esquerda começando em starting_point (este será removido)
 void shift_left(Table *table, int starting_point)
 {
     int i = 0;
@@ -63,16 +68,33 @@ void shift_left(Table *table, int starting_point)
     table->size--;
 }
 
-void delete(Table *table, Time *time)
+// Tanto delete como contains faziam quase a mesma coisa, então puxei pra cima o trabalho pesado
+int find(Table *table, Time *time)
 {
     for( int i = 0; i < table->size; i++){
         if(time_cmp(table->rows[i].time, time) == 0){
-            shift_left(table, i);
-            return;
+            return i;
         }
     }
 
     printf("Não encontrado\n");
+    return -1;
+}
+
+// Remove o elemento da tabela
+void delete(Table *table, Time *time)
+{
+    int index = find(table, time);
+    if(index >= 0){
+        shift_left(table, index);
+    }
+}
+
+// Verifica se a tabela contém o elemento passado
+int contains(Table *table, Time *time)
+{
+    int index = find(table, time);
+    return index >= 0;
 }
 
 void main()
@@ -81,20 +103,35 @@ void main()
     Row *row1 = create_row(time1, "Horaaaaaaaaaaaaaario");
     Time *time2 = create_time(15,16,17);
     Row *row2 = create_row(time2, "Oi");
+    Time *time3 = create_time(18,19,20);
+    Row *row3 = create_row(time3, "Teste");
     Table *table = create_table();
 
-    // for(int i = 0; i < 30; i++)
-    // {
-        put(table, row1);
-        put(table, row2);
-    // }
+    // PUT / PRINT
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
     // print_table(table);
 
-    // char *wanted = get(table, time1);
-    // printf("%s\n", wanted);
+    // GET
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
+    // printf("%s\n", get(table, time1));
+    // printf("%s\n", get(table, time2));
+    // printf("%s\n", get(table, time3));
 
-    print_table(table);
-    printf("\n");
-    delete(table, time1);
-    print_table(table);
+    // DELETE
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
+    // delete(table, time1);
+    // delete(table, time2);
+    // print_table(table);
+
+    // CONTAINS
+    // put(table,  row1);
+    // put(table,  row2);
+    // printf("%d\n", contains(table, row1->time));
+    // printf("%d\n", contains(table, row3->time));
 }
