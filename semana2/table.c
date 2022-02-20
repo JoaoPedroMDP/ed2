@@ -134,6 +134,24 @@ Time *max(Table *table)
     return max;
 }
 
+Time *floor(Table *table, Time *time)
+{
+    int i = 0, cmp = 0;
+    for( i = 0; i < table->size; i++)
+    {
+        cmp = time_cmp(table->rows[i].time, time); 
+        if(cmp >= 0){
+            if(cmp == 0){
+                return table->rows[i].time;
+            }else{
+                return table->rows[i - 1].time;
+            }
+        }
+    }
+
+    return table->rows[i - 1].time;
+}
+
 void main()
 {
     Time *time1 = create_time(12,13,14);
@@ -204,4 +222,11 @@ void main()
     // Row *row4 = create_row(time4, "Teste");
     // put(table,  row4);
     // print_time(max(table));
+
+    // FLOOR
+    // put(table,  row1);
+    // put(table,  row2);
+    // put(table,  row3);
+    // Time *time4 = create_time(15,16,20);
+    // print_time(floor(table, time4));
 }
